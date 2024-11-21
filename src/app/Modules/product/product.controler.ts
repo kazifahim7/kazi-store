@@ -76,6 +76,60 @@ const getProductByID = async (req: Request, res: Response)=>{
 
 
 }
+const updateProductByID = async (req: Request, res: Response)=>{
+  try {
+
+    const value = req.params.productId ;
+    const data = req.body;
+    
+
+    const result = await productServices.updateProductByID(value,data);
+
+    res.status(200).json({
+      message: 'Product updated successfully',
+      status: true,
+      data: result,
+    });
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    res.status(500).json({
+      message: error.message || 'Something went wrong',
+      success: false,
+      error: error.details || error.name,
+      stack: config.node_env === 'development' ? error.stack : undefined,
+    });
+  }
+
+
+}
+const deleteProductByID = async (req: Request, res: Response)=>{
+  try {
+
+    const value = req.params.productId ;
+    
+    
+
+     await productServices.deleteProductByID(value);
+
+    res.status(200).json({
+      message: 'Product deleted successfully',
+      status: true,
+      data:{},
+    });
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    res.status(500).json({
+      message: error.message || 'Something went wrong',
+      success: false,
+      error: error.details || error.name,
+      stack: config.node_env === 'development' ? error.stack : undefined,
+    });
+  }
+
+
+}
 
 
 
@@ -84,5 +138,7 @@ const getProductByID = async (req: Request, res: Response)=>{
 export const productController = {
   createProduct,
   getAllProduct,
-  getProductByID
+  getProductByID,
+  updateProductByID,
+  deleteProductByID
 };

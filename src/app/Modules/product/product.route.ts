@@ -13,4 +13,16 @@ router.get('/products', productController.getAllProduct);
 router.get('/products/:productId', productController.getProductByID);
 
 
+//4. Update a Stationery Product
+router.put('/products/:productId', productController.updateProductByID);
+
+
+// 5. Delete a Stationery Product
+
+router.delete('/products/:productId', productController.deleteProductByID);
+
+
+
+
+
 export const productRouter = router;
