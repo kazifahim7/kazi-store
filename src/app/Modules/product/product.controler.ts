@@ -33,7 +33,33 @@ const getAllProduct = async (req: Request, res: Response)=>{
     const result = await productServices.getAllProduct();
 
     res.status(200).json({
-      message: 'Product created successfully',
+      message: 'Products retrieved successfully',
+      status: true,
+      data: result,
+    });
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    res.status(500).json({
+      message: error.message || 'Something went wrong',
+      success: false,
+      error: error.details || error.name,
+      stack: config.node_env === 'development' ? error.stack : undefined,
+    });
+  }
+
+
+}
+const getProductByID = async (req: Request, res: Response)=>{
+  try {
+
+    const value = req.params.productId
+    
+
+    const result = await productServices.getProductByID(value);
+
+    res.status(200).json({
+      message: 'Products retrieved successfully',
       status: true,
       data: result,
     });
@@ -57,5 +83,6 @@ const getAllProduct = async (req: Request, res: Response)=>{
 
 export const productController = {
   createProduct,
-  getAllProduct
+  getAllProduct,
+  getProductByID
 };
