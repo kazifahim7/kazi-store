@@ -25,11 +25,8 @@ const createProduct = async (req: Request, res: Response) => {
   }
 };
 
-
-const getAllProduct = async (req: Request, res: Response)=>{
+const getAllProduct = async (req: Request, res: Response) => {
   try {
-    
-
     const result = await productServices.getAllProduct();
 
     res.status(200).json({
@@ -47,14 +44,10 @@ const getAllProduct = async (req: Request, res: Response)=>{
       stack: config.node_env === 'development' ? error.stack : undefined,
     });
   }
-
-
-}
-const getProductByID = async (req: Request, res: Response)=>{
+};
+const getProductByID = async (req: Request, res: Response) => {
   try {
-
-    const value = req.params.productId
-    
+    const value = req.params.productId;
 
     const result = await productServices.getProductByID(value);
 
@@ -73,17 +66,13 @@ const getProductByID = async (req: Request, res: Response)=>{
       stack: config.node_env === 'development' ? error.stack : undefined,
     });
   }
-
-
-}
-const updateProductByID = async (req: Request, res: Response)=>{
+};
+const updateProductByID = async (req: Request, res: Response) => {
   try {
-
-    const value = req.params.productId ;
+    const value = req.params.productId;
     const data = req.body;
-    
 
-    const result = await productServices.updateProductByID(value,data);
+    const result = await productServices.updateProductByID(value, data);
 
     res.status(200).json({
       message: 'Product updated successfully',
@@ -100,22 +89,17 @@ const updateProductByID = async (req: Request, res: Response)=>{
       stack: config.node_env === 'development' ? error.stack : undefined,
     });
   }
-
-
-}
-const deleteProductByID = async (req: Request, res: Response)=>{
+};
+const deleteProductByID = async (req: Request, res: Response) => {
   try {
+    const value = req.params.productId;
 
-    const value = req.params.productId ;
-    
-    
-
-     await productServices.deleteProductByID(value);
+    await productServices.deleteProductByID(value);
 
     res.status(200).json({
       message: 'Product deleted successfully',
       status: true,
-      data:{},
+      data: {},
     });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -127,18 +111,12 @@ const deleteProductByID = async (req: Request, res: Response)=>{
       stack: config.node_env === 'development' ? error.stack : undefined,
     });
   }
-
-
-}
-
-
-
-
+};
 
 export const productController = {
   createProduct,
   getAllProduct,
   getProductByID,
   updateProductByID,
-  deleteProductByID
+  deleteProductByID,
 };
