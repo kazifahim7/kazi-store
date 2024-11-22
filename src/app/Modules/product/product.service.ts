@@ -6,8 +6,18 @@ const saveProductInDB = async (data: Product) => {
   return result;
 };
 
-const getAllProduct = async () => {
-  const result = await ProductModel.find();
+const getAllProduct = async (text:string ) => {
+  let query={}
+  if(text){
+    query = {
+      $or: [
+        { name: { $regex: text, $options: "i" } },
+        { brand: { $regex: text, $options: "i" } },
+        { category: { $regex: text, $options: "i" } },
+      ]
+    }
+  }
+  const result = await ProductModel.find(query);
   return result;
 };
 const getProductByID = async (id: string) => {
