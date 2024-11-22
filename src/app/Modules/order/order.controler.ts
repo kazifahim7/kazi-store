@@ -40,6 +40,53 @@ const createOrder = async (req: Request, res: Response) => {
   }
 };
 
+ 
+const getTotalRevenue= async(req:Request,res:Response)=>{
+  try {
+    const result= await orderServices.totalRevenue()
+
+    if(!result){
+      res.status(404).json({
+        success: false,
+        message: "Order not found",
+      });
+    }
+
+    res.status(200).json({
+      message: 'Order created successfully',
+      success: true,
+      data: result,
+    });
+
+    
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error:any) {
+    res.status(500).json({
+      message: error.message || 'Something went wrong',
+      success: false,
+      error: error.details || error.name,
+      stack: config.node_env === 'development' ? error.stack : undefined,
+    });
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const orderController = {
   createOrder,
+  getTotalRevenue
 };

@@ -20,6 +20,29 @@ const createOrderInDB = async (value: Order) => {
   return result;
 };
 
+
+
+const totalRevenue = async () => {
+  const result = await OrderModel.aggregate([
+    // stage-1
+    {$group:{
+      _id:null,
+      totalRevenue: { $sum:"$totalPrice"}
+    }},
+
+    // stage-2
+    {$project:{totalRevenue:1, _id:0}}
+
+  ])
+
+  return result
+}
+
+
+
+
+
 export const orderServices = {
   createOrderInDB,
+  totalRevenue
 };
