@@ -16,7 +16,7 @@ An **Express.js** application built with **TypeScript** and **MongoDB** (using M
 [GitHub Repository](https://github.com/kazifahim7/kazi-store) 
 
 ## Video Explanation
-[Watch Video](coomingsoon..) 
+[Watch Video](https://drive.google.com/file/d/10kyTXd9EzmSv1cfXNbjfqgeBa3bwosOx/view?usp=sharing) 
 ## All api
 ### **1. Create a Stationery Product**
 
