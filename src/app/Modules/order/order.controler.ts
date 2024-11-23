@@ -53,7 +53,7 @@ const getTotalRevenue= async(req:Request,res:Response)=>{
     }
 
     res.status(200).json({
-      message: 'Order created successfully',
+      message: 'Revenue calculated successfully',
       success: true,
       data: result[0],
     });
