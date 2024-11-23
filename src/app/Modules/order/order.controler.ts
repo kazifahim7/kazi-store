@@ -24,7 +24,7 @@ const createOrder = async (req: Request, res: Response) => {
     const result = await orderServices.createOrderInDB(value);
 
     res.status(200).json({
-      message: 'Order created successfully',
+      message: 'Revenue calculated successfully',
       success: true,
       data: result,
     });
